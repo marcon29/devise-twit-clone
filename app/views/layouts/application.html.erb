@@ -7,20 +7,51 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if flash [:notice] %>
+    <% if flash[:notice] %>
       <div class="notification is-primary global-notification> 
         <p class="notice"><%= notice %></p>
       </div>
     <% end %> 
-    <% if flash [:alert] %>
+    <% if flash[:alert] %>
       <div class="notification is-danger global-notification> 
         <p class="alert"><%= alert %></p>
       </div>
     <% end %> 
+
+    <!-- all classes/id selectors are for bulma -->
+    <nav class="navbar is-info">
+      <!-- this adds the logo and site header -->
+      <div class="navbar-brand">
+        <%= link_to root_path, class: "navbar-item" do %>
+          <h1 class="title is-5">TwitClone</h1>
+        <% end %>
+        
+        <!-- this creates a hamburger menu when screen size smaller -->
+        <div class="navbar-burger burger" data-target="navbarExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <!-- this is the actual nav (will display normally but populate burger menu upon responsive) -->
+      <!-- note id matches burger menu data-target -->
+      <div id="navbarExample" class="navbar-menu">
+        <div class="navbar-end">
+          <p class="control">
+            <%= link_to "New Post", new_post_path, class: "button is-info is-inverted" %>
+          </p>
+        </div>
+      </div>
+
+      
+    </nav>
+
 
     <%= yield %>
   </body>
