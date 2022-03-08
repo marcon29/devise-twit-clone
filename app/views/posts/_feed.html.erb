@@ -36,10 +36,7 @@
                 <!-- this div tag adds the post content -->
                 <div class="media-content">
                     <div class="content">
-                        <p>
-                            <strong><%= post.user.name %></strong>
-                            <small>@<%= post.user.username %></small>
-                        </p>
+                        <%= render "user_info", post: post %>
                         <p><%= post.content %></p>
                     </div>
 

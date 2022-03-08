@@ -1,0 +1,9 @@
+<p> 
+    <% if post.nil? %>
+        <strong><%= user.name %></strong><br>
+        <small>@<%= user.username %></small>
+    <% else %>
+        <strong><%= post.user.name %></strong>
+        <small>@<%= post.user.username %></small>
+    <% end %>
+</p>
