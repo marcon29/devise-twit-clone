@@ -1,6 +1,7 @@
 <!-- form developed with simple form -->
 <%= simple_form_for(@post) do |f| %>
   <%= f.error_notification %>
+
   <div class="field">
     <div class="control">
       <%= f.input :content, 
@@ -12,5 +13,6 @@
       %>
     </div>
   </div>
+  
   <%= f.button :submit, class: "button is-info" %>
 <% end %>

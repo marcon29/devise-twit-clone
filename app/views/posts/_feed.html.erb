@@ -2,21 +2,22 @@
 <div class="column is-half">
     
     <!-- this article tag wraps the poster img and new post form into a nice box -->
-    <article class="media box">
+    <% if user_signed_in? %>
+        <article class="media box">
 
-        <!-- this figure tag adds the profile pic of current_user -->
-        <figure class="media left">
-            <p class="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/64x64.png">
-            </p>
-        </figure>
+            <!-- this figure tag adds the profile pic of current_user -->
+            <figure class="media left">
+                <p class="image is-64x64">
+                    <img src="https://bulma.io/images/placeholders/64x64.png">
+                </p>
+            </figure>
 
-        <!-- this div tag adds current_user stats -->
-        <div class="media-content">
-            <%= render "form" %>
-        </div>
-    </article>
-
+            <!-- this div tag adds current_user stats -->
+            <div class="media-content">
+                <%= render "form" %>
+            </div>
+        </article>
+    <% end %>
 
     <!-- this portion will populate the feed with posts -->
     <% @posts.each do |post| %>
@@ -35,27 +36,31 @@
                 <!-- this div tag adds the post content -->
                 <div class="media-content">
                     <div class="content">
-                        <strong>Mark Stabler</strong><br>
-                        <small>@stablerwriter</small><br>
+                        <p>
+                            <strong><%= post.user.name %></strong>
+                            <small>@<%= post.user.username %></small>
+                        </p>
                         <p><%= post.content %></p>
                     </div>
 
                     <!-- this div tag adds the post options under the post content -->
-                    <nav class="level">
-                        <div class="level-left is-mobile">
-                            
-                            <!-- these are icons (wrapped in link tags) from font-awesome (stylesheet link in layouts/application) -->
-                            <%= link_to post, class: "level-item" do %>
-                                <span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
-                            <% end %>
-                            <%= link_to edit_post_path(post), class: "level-item" do %>
-                                <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                            <% end %>
-                            <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' }, class: "level-item" do %>
-                                <span class="icon"><i class="fa fa-trash" aria-hidden="true"></i></span>
-                            <% end %>
-                        </div>
-                    </nav>
+                    <% if post.user == current_user %>
+                        <nav class="level">
+                            <div class="level-left is-mobile">
+                                
+                                <!-- these are icons (wrapped in link tags) from font-awesome (stylesheet link in layouts/application) -->
+                                <%= link_to post, class: "level-item" do %>
+                                    <span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
+                                <% end %>
+                                <%= link_to edit_post_path(post), class: "level-item" do %>
+                                    <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                <% end %>
+                                <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' }, class: "level-item" do %>
+                                    <span class="icon"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                                <% end %>
+                            </div>
+                        </nav>
+                    <% end %>
                 </div>
             </article>
         </div>
