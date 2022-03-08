@@ -6,7 +6,9 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order("created_at DESC")
     @post = Post.new
+    
     @users = User.all
+    @users = User.where.not(id: current_user.id) if current_user
   end
 
   # GET /posts/1 or /posts/1.json

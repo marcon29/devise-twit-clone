@@ -1,16 +1,12 @@
 <!-- this third column will display other users to follow -->
 <div class="column is-one-quarter">
     <nav class="panel">
-        <p class="panel-block">Who to Follow</p>
+        <p class="panel-heading">Who to Follow</p>
 
         <% @users.all.each do |user| %>
             <div class="panel-block">
                 <article class="media">
-                    <div class="media left">
-                        <figure class="image is-32x32">
-                            <img src="https://bulma.io/images/placeholders/64x64.png">
-                        </figure>
-                    </div>
+                    <%= render "profile_image", size: 32, user: user %>
                     <div class="media-content">
                         <div class="content">
                             <%= render "user_info", user: user, post: nil %>

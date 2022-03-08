@@ -6,11 +6,8 @@
         <article class="media box">
 
             <!-- this figure tag adds the profile pic of current_user -->
-            <figure class="media left">
-                <p class="image is-64x64">
-                    <img src="https://bulma.io/images/placeholders/64x64.png">
-                </p>
-            </figure>
+            
+            <%= render "profile_image", size: 64, user: current_user %>
 
             <!-- this div tag adds current_user stats -->
             <div class="media-content">
@@ -27,11 +24,8 @@
 
             <!-- this article (then nested figure) tag adds the profile pic of poster -->
             <article class="media">
-                <div class="media left">
-                    <figure class="image is-64x64">
-                        <img src="https://bulma.io/images/placeholders/64x64.png">
-                    </figure>
-                </div>
+                <%= render "profile_image", size: 64, user: post.user %>
+                
 
                 <!-- this div tag adds the post content -->
                 <div class="media-content">
